@@ -9,7 +9,7 @@ import {Toolbar} from "../tools/toolbar"
 import {ToolView} from "../tools/tool"
 import {Selection} from "../selections/selection"
 import {Plot} from "./plot"
-
+import {AxisView} from "../axes/axis"
 import {Reset} from "core/bokeh_events"
 import {Arrayable} from "core/types"
 import {Signal0} from "core/signaling"
@@ -215,6 +215,16 @@ export class PlotCanvasView extends DOMView {
 
     this.unpause(true)
     logger.debug("PlotView initialized")
+  }
+
+  get axis_views(): AxisView[] {
+    const views = []
+    for (const id in this.renderer_views) {
+      const child_view = this.renderer_views[id]
+      if (child_view instanceof AxisView)
+        views.push(child_view)
+    }
+    return views
   }
 
   set_cursor(cursor: string = "default"): void {
