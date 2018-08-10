@@ -168,12 +168,6 @@ def test_plot_add_layout_raises_error_if_not_render():
         plot.add_layout(Range1d())
 
 
-def test_plot_add_layout_raises_error_if_plot_already_on_annotation():
-    plot = figure()
-    with pytest.raises(ValueError):
-        plot.add_layout(Label(plot=plot))
-
-
 def test_plot_add_layout_adds_label_to_plot_renderers():
     plot = figure()
     label = Label()

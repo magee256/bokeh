@@ -22,7 +22,6 @@ describe("Axis", () => {
     const axis = new Axis({
       ticker,
       formatter,
-      plot,
       major_label_overrides: {0: "zero", 4: "four", 10: "ten"},
     })
     expect(axis.compute_labels([0,2,4.0,6,8,10])).to.be.deep.equal(["zero", "2", "four", "6", "8", "ten"])
@@ -38,7 +37,6 @@ describe("Axis", () => {
     const axis = new Axis({
       ticker,
       formatter,
-      plot,
       fixed_location: 10,
     })
     expect(axis.loc).to.equal(10)
@@ -55,7 +53,6 @@ describe("Axis", () => {
     const axis = new Axis({
       ticker,
       formatter,
-      plot,
       fixed_location: "foo",
     })
     axis.add_panel('left')
@@ -72,7 +69,6 @@ describe("Axis", () => {
     const axis = new Axis({
       ticker,
       formatter,
-      plot,
     })
     expect(axis.panel).to.be.undefined
     axis.add_panel('left')
