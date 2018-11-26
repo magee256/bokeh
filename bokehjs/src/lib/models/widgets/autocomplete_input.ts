@@ -1,14 +1,13 @@
-import {TextInput, TextInputView} from "models/widgets/text_input"
-import {InputWidgetView} from "models/widgets/input_widget"
+import {TextInput, TextInputView} from "./text_input"
 
-import {empty, ul, li, a, div, Keys, label, input} from "core/dom"
+import {empty, ul, li, a, div, Keys} from "core/dom"
 import {clear_menus} from "core/menus"
 import * as p from "core/properties"
 
 
 // some code cannibalized from from https://www.w3schools.com/howto/howto_js_autocomplete.asp
-export class RevisedAutocompleteView extends TextInputView {
-  model: RevisedAutocomplete
+export class AutocompleteInputView extends TextInputView {
+  model: AutocompleteInput
 
   protected menuEl: HTMLElement
 
@@ -108,7 +107,6 @@ export class RevisedAutocompleteView extends TextInputView {
   }
 
   protected _clear_menu(): void {
-    console.log('Closing')
     // Remove the menu and reset the focus to -1
     this.el.classList.remove("bk-bs-open");
     var menuEls = document.getElementsByClassName("bk-bs-dropdown-menu");
@@ -196,7 +194,7 @@ export class RevisedAutocompleteView extends TextInputView {
   }
 }
 
-export namespace RevisedAutocomplete {
+export namespace AutocompleteInput {
   export interface Attrs extends TextInput.Attrs {
     completions: {}
   }
@@ -204,19 +202,19 @@ export namespace RevisedAutocomplete {
   export interface Props extends TextInput.Props {}
 }
 
-export interface RevisedAutocomplete extends RevisedAutocomplete.Attrs {}
+export interface AutocompleteInput extends AutocompleteInput.Attrs {}
 
-export class RevisedAutocomplete extends TextInput {
+export class AutocompleteInput extends TextInput {
 
-  properties: RevisedAutocomplete.Props
+  properties: AutocompleteInput.Props
 
-  constructor(attrs?: Partial<RevisedAutocomplete.Attrs>) {
+  constructor(attrs?: Partial<AutocompleteInput.Attrs>) {
     super(attrs)
   }
 
   static initClass(): void {
-    this.prototype.type = "RevisedAutocomplete"
-    this.prototype.default_view = RevisedAutocompleteView
+    this.prototype.type = "AutocompleteInput"
+    this.prototype.default_view = AutocompleteInputView
 
     this.define({
       completions: [p.Any, {}],
@@ -230,4 +228,4 @@ export class RevisedAutocomplete extends TextInput {
   active: boolean
 }
 
-RevisedAutocomplete.initClass()
+AutocompleteInput.initClass()
